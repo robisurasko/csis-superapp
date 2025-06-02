@@ -11,15 +11,15 @@ app_license = "unlicense"
 # required_apps = []
 
 # Each item in the list will be shown as an app in the apps page
-# add_to_apps_screen = [
-# 	{
-# 		"name": "csis",
-# 		"logo": "/assets/csis/logo.png",
-# 		"title": "Customer Solution Integrated System",
-# 		"route": "/csis",
-# 		"has_permission": "csis.api.permission.has_app_permission"
-# 	}
-# ]
+ add_to_apps_screen = [
+ 	{
+ 		"name": "csis",
+ 		"logo": "/assets/csis/logo.png",
+ 		"title": "Customer Solution Integrated System",
+ 		"route": "/csis",
+ 		"has_permission": "csis.api.permission.has_app_permission"
+ 	}
+ ]
 
 # Includes in <head>
 # ------------------
@@ -64,6 +64,11 @@ app_license = "unlicense"
 # 	"Role": "home_page"
 # }
 
+website_route_rules = [
+	{"from_route": "/csis/<path:app_path>", "to_route": "crm"},
+]
+
+
 # Generators
 # ----------
 
@@ -82,13 +87,13 @@ app_license = "unlicense"
 # Installation
 # ------------
 
-# before_install = "csis.install.before_install"
-# after_install = "csis.install.after_install"
+ before_install = "csis.install.before_install"
+ after_install = "csis.install.after_install"
 
 # Uninstallation
 # ------------
 
-# before_uninstall = "csis.uninstall.before_uninstall"
+ before_uninstall = "csis.uninstall.before_uninstall"
 # after_uninstall = "csis.uninstall.after_uninstall"
 
 # Integration Setup
@@ -133,6 +138,12 @@ app_license = "unlicense"
 # 	"ToDo": "custom_app.overrides.CustomToDo"
 # }
 
+override_doctype_class = {
+	"Contact": "crm.overrides.contact.CustomContact",
+	"Email Template": "crm.overrides.email_template.CustomEmailTemplate",
+}
+
+
 # Document Events
 # ---------------
 # Hook on document methods and events
@@ -144,6 +155,33 @@ app_license = "unlicense"
 # 		"on_trash": "method"
 # 	}
 # }
+
+doc_events = {
+	"Contact": {
+		"validate": ["crm.api.contact.validate"],
+	},
+	"ToDo": {
+		"after_insert": ["crm.api.todo.after_insert"],
+		"on_update": ["crm.api.todo.on_update"],
+	},
+	"Comment": {
+		"on_update": ["crm.api.comment.on_update"],
+	},
+	"WhatsApp Message": {
+		"validate": ["crm.api.whatsapp.validate"],
+		"on_update": ["crm.api.whatsapp.on_update"],
+	},
+	"CRM Deal": {
+		"on_update": [
+			"crm.fcrm.doctype.erpnext_crm_settings.erpnext_crm_settings.create_customer_in_erpnext"
+		],
+	},
+	"User": {
+		"before_validate": ["crm.api.demo.validate_user"],
+		"validate_reset_password": ["crm.api.demo.validate_reset_password"],
+	},
+}
+
 
 # Scheduled Tasks
 # ---------------
@@ -242,3 +280,38 @@ app_license = "unlicense"
 # 	"Logging DocType Name": 30  # days to retain logs
 # }
 
+after_migrate = ["crm.fcrm.doctype.fcrm_settings.fcrm_settings.after_migrate"]
+
+standard_dropdown_items = [
+	{
+		"name1": "app_selector",
+		"label": "Apps",
+		"type": "Route",
+		"route": "#",
+		"is_standard": 1,
+	},
+	{
+		"name1": "toggle_theme",
+		"label": "Toggle theme",
+		"type": "Route",
+		"icon": "moon",
+		"route": "#",
+		"is_standard": 1,
+	},
+	{
+		"name1": "settings",
+		"label": "Settings",
+		"type": "Route",
+		"icon": "settings",
+		"route": "#",
+		"is_standard": 1,
+	},
+	{
+		"name1": "logout",
+		"label": "Log out",
+		"type": "Route",
+		"icon": "log-out",
+		"route": "#",
+		"is_standard": 1,
+	},
+]
