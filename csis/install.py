@@ -27,29 +27,13 @@ def after_install(force=False):
 
 def add_default_lead_statuses():
 	statuses = {
-		"New": {
+		"Open": {
 			"color": "gray",
 			"position": 1,
 		},
-		"Contacted": {
+		"Closed": {
 			"color": "orange",
 			"position": 2,
-		},
-		"Nurture": {
-			"color": "blue",
-			"position": 3,
-		},
-		"Qualified": {
-			"color": "green",
-			"position": 4,
-		},
-		"Unqualified": {
-			"color": "red",
-			"position": 5,
-		},
-		"Junk": {
-			"color": "purple",
-			"position": 6,
 		},
 	}
 
@@ -66,33 +50,13 @@ def add_default_lead_statuses():
 
 def add_default_deal_statuses():
 	statuses = {
-		"Qualification": {
+		"Open": {
 			"color": "gray",
 			"position": 1,
 		},
-		"Demo/Making": {
+		"Closed": {
 			"color": "orange",
 			"position": 2,
-		},
-		"Proposal/Quotation": {
-			"color": "blue",
-			"position": 3,
-		},
-		"Negotiation": {
-			"color": "yellow",
-			"position": 4,
-		},
-		"Ready to Close": {
-			"color": "purple",
-			"position": 5,
-		},
-		"Won": {
-			"color": "green",
-			"position": 6,
-		},
-		"Lost": {
-			"color": "red",
-			"position": 7,
 		},
 	}
 

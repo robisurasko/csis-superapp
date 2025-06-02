@@ -6,7 +6,7 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0, viewport-fit=cover maximum-scale=1.0, user-scalable=no"
     />
-    <title>Frappe CRM</title>
+    <title>CSIS</title>
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-title" content="Frappe CRM" />
     <meta name="apple-mobile-web-app-status-bar-style" content="white" />
@@ -198,13 +198,13 @@
   <link rel="manifest" href="/assets/crm/frontend/manifest.webmanifest"><script id="vite-plugin-pwa:register-sw" src="/assets/crm/frontend/registerSW.js"></script></head>
   <body class="sm:overscroll-y-none no-scrollbar">
     <div id="app" class="h-full"></div>
-    
-  
+
+
           <script>
               {% for key in boot %}
               window["{{ key }}"] = {{ boot[key] | tojson }};
               {% endfor %}
           </script>
           </body>
-          
+
 </html>

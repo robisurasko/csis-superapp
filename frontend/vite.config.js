@@ -13,7 +13,7 @@ export default defineConfig({
       lucideIcons: true,
       jinjaBootData: true,
       buildConfig: {
-        indexHtmlPath: '../crm/www/crm.html',
+        indexHtmlPath: '../csis/www/crm.html',
         emptyOutDir: true,
         sourcemap: true,
       },
@@ -27,8 +27,8 @@ export default defineConfig({
       },
       manifest: {
         display: 'standalone',
-        name: 'Frappe CRM',
-        short_name: 'Frappe CRM',
+        name: 'CSIS',
+        short_name: 'CSIS',
         start_url: '/crm',
         description:
           'Modern & 100% Open-source CRM tool to supercharge your sales operations',
